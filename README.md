@@ -299,6 +299,7 @@ PK индекс на ID в таблице Users, Unique индекс на Login,
 
 ### Часть 10. Схема проекта
 ![схема проекта](/src/схема%20проекта.svg)
+При помощи DNS определяется IP адрес дата центра к которому необходимо определить запрос, далее на слое L4 определяется NGNIX на который будет проксироваться запрос, надежность NGNIX определяется технологией CARP и присутствием нескольких NGNIX-серверов, далее NGNIX проксиует запрос на Application Server, при этом по таймауту запрос может быть переотправлен на другой application server, присутствие нескольких application server-ов обеспечивает равномерное распределение нагрузки и повышает отказоустойчивость. Application Server обращается к Redis и PostrgreSQL, надеждность которых обеспечивается моделью Master-Slave. Также для PostrgreSQL выполнено шардирование, что распределяет нагрузку на БД.
 ### Список источников
 [^1]: [Статистика Google Assistant](https://tech.hindustantimes.com/tech/news/ces-2020-google-assistant-hits-500-million-users-new-set-of-features-announced-story-oKAGV1xsMrrAYPPigMEGxK-4.html)
 [^2]: [Статистика голосовых помощников](https://serpwatch.io/blog/voice-search-statistics/)
